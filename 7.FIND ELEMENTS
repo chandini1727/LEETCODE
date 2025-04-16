@@ -1,0 +1,35 @@
+class FindElements {
+    Set<Integer>value=new HashSet<Integer>();
+
+    public FindElements(TreeNode root) 
+    {
+        if(root!=null)
+        {
+            root.val=0;
+            recover(root);
+        }   
+    }
+    public void recover(TreeNode node)
+    {
+        if(node==null)
+        {
+            return;
+        }
+        value.add(node.val);
+        if(node.left!=null)
+        {
+            node.left.val=2*node.val+1;
+            recover(node.left);
+        }
+        if(node.right!=null)
+        {
+            node.right.val=2*node.val+2;
+            recover(node.right);
+        }
+    }
+    
+    public boolean find(int target) {
+        return value.contains(target);
+        
+    }
+}

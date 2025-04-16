@@ -1,0 +1,25 @@
+class Solution {
+    public int tupleSameProduct(int[] nums) {
+        HashMap<Integer,Integer> hm=new HashMap<Integer,Integer>();
+        int count=0;
+        for(int i=0;i<nums.length;i++)
+        {
+            for(int j=i+1;j<nums.length;j++)
+            {
+                int product=nums[i]*nums[j];
+                count+=hm.getOrDefault(product,0);
+                if(hm.containsKey(product)) 
+                {
+                    hm.put(product, hm.get(product) + 1);
+                } 
+                else 
+                { 
+                    hm.put(product, 1);
+                }
+            }
+
+        }
+        return count*8;
+        
+    }
+}
